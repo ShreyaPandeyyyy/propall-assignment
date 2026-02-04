@@ -94,7 +94,7 @@ ROLES_URL=<GitHub RAW roles.json URL>
 
 ## ▶️ How to Run the Project
 
-## ▶️ How to Get the Project
+### How to Get the Project
 
 Open terminal and clone the repository:
 
