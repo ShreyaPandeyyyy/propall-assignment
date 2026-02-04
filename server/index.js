@@ -1,15 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const http = require("http");
 const { Server } = require("socket.io");
 
-dotenv.config();
+// ✅ Load env based on NODE_ENV
+// - NODE_ENV=development  -> loads: .env.dev (and .env as fallback)
+// - NODE_ENV=production   -> loads: .env.production (and .env as fallback)
+require("dotenv-flow").config();
 
 const app = express();
 const server = http.createServer(app);
 
-// ✅ Config from .env
+// ✅ Config from env
 const PORT = process.env.PORT || 5000;
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "*";
 const USERS_URL = process.env.USERS_URL;
@@ -36,7 +38,7 @@ let rolesData = { users: { admin: [], viewer: [] } };
 // Fetchers (cloud JSON)
 // ----------------------
 const fetchUsersFromCloud = async () => {
-  if (!USERS_URL) throw new Error("Missing USERS_URL in .env");
+  if (!USERS_URL) throw new Error("Missing USERS_URL in env");
 
   const response = await fetch(USERS_URL);
   const data = await response.json();
@@ -46,12 +48,15 @@ const fetchUsersFromCloud = async () => {
 };
 
 const fetchRolesFromCloud = async () => {
-  if (!ROLES_URL) throw new Error("Missing ROLES_URL in .env");
+  if (!ROLES_URL) throw new Error("Missing ROLES_URL in env");
 
   const response = await fetch(ROLES_URL);
   const data = await response.json();
 
-  rolesData = data && typeof data === "object" ? data : { users: { admin: [], viewer: [] } };
+  rolesData =
+    data && typeof data === "object"
+      ? data
+      : { users: { admin: [], viewer: [] } };
 
   const a = rolesData?.users?.admin?.length || 0;
   const v = rolesData?.users?.viewer?.length || 0;
@@ -64,6 +69,7 @@ const fetchRolesFromCloud = async () => {
     await fetchUsersFromCloud();
     await fetchRolesFromCloud();
     console.log(`✅ Allowed client origin: ${CLIENT_ORIGIN}`);
+    console.log(`✅ NODE_ENV: ${process.env.NODE_ENV || "not set"}`);
   } catch (err) {
     console.error("❌ Startup fetch failed:", err.message);
   }
@@ -76,7 +82,7 @@ app.get("/api/users", (req, res) => {
   res.json(usersData);
 });
 
-// ✅ FIXED: update only fields that exist (so phone never becomes undefined)
+// ✅ Update only fields that exist (so phone never becomes undefined)
 app.post("/api/users/:id", (req, res) => {
   const { id } = req.params;
   const { phone, credits } = req.body;
@@ -127,7 +133,9 @@ app.post("/api/roles/refresh", async (req, res) => {
     io.emit("rolesUpdated", rolesData);
     res.json({ message: "Roles refreshed from cloud JSON", roles: rolesData });
   } catch (err) {
-    res.status(500).json({ message: "Failed to refresh roles", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Failed to refresh roles", error: err.message });
   }
 });
 
