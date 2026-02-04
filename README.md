@@ -1,23 +1,3 @@
-## How to Test
-
-1. Start both servers
-
-### Open the login page
-- http://localhost:3000
-
-Enter an email present in `roles.json`:
-
-- Admin email → redirected to `/admin`
-- Viewer email → redirected to `/viewer`
-
-### Open two tabs to test real-time updates
-- Tab 1: http://localhost:3000/admin
-- Tab 2: http://localhost:3000/viewer
-
-Edit any user in the Admin tab.  
-Viewer tab updates instantly in real time via Socket.io.
-
----
 
 # 🚀 Propall Full-Stack Assignment
 
@@ -50,15 +30,30 @@ This repository contains:
 - `users.json` — user records
 - `roles.json` — role-based access control
 
+The backend **never stores** this data locally.
+
 ---
 
 ## ⚙️ Features Implemented
 
 - Fetch data from external cloud JSON (GitHub RAW URLs)
-- Role-based access (admin / viewer)
+- Role-based access (Admin / Viewer)
+- Login using email → role fetched from cloud JSON
 - Real-time dashboard updates using Socket.io
+- Admin can edit phone and credits
+- Viewer sees updates instantly (no refresh)
+- Decoupled data layer from application layer.
+
+---
+
+## ⚙️ Features Implemented
+- Fetch data from external cloud JSON (GitHub RAW URLs)
+- Role-based access (Admin / Viewer)
+- Login using email → role fetched from cloud JSON
+- Real-time dashboard updates using Socket.io
+- Admin can edit phone and credits
+- Viewer sees updates instantly (no refresh)
 - Decoupled data layer from application layer
-- Production-like architecture pattern
 
 ---
 
@@ -85,6 +80,66 @@ ROLES_URL
 
 ---
 
+
+## ▶️ How to Run the Project
+
+### Backend (Server)
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+Server runs at: http://localhost:5000
+
+---
+
+### Frontend (Client)
+
+Open a new terminal:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Client runs at: http://localhost:3000
+
+---
+
+## 🧪 How to Test
+
+### Step 1 — Open the Login Page
+
+Go to:
+
+http://localhost:3000
+
+Enter an email present in `roles.json`.
+
+- If the email is in the **admin list** → redirected to `/admin`
+- If the email is in the **viewer list** → redirected to `/viewer`
+
+---
+
+### Step 2 — Open Two Tabs for Real-Time Demo
+
+| Tab | URL | Role |
+|-----|-----|------|
+| Tab 1 | http://localhost:3000/admin | Admin |
+| Tab 2 | http://localhost:3000/viewer | Viewer |
+
+---
+
+### Step 3 — Verify Real-Time Updates
+
+1. Edit any user's phone or credits in the **Admin** tab.
+2. Click **Save**.
+3. Observe the **Viewer** tab updating instantly without refresh.
+
+---
 
 ## 👩‍💻 Author
 
