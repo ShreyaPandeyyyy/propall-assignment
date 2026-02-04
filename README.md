@@ -94,6 +94,15 @@ ROLES_URL=<GitHub RAW roles.json URL>
 
 ## ▶️ How to Run the Project
 
+## ▶️ How to Get the Project
+
+Open terminal and clone the repository:
+
+```bash
+git clone https://github.com/ShreyaPandeyyyy/propall-assignment.git
+cd propall-assignment
+```
+
 ### Backend (Server)
 
 ```bash
