@@ -49,8 +49,26 @@ This repository contains:
 
 ---
 
+## Environment Files
+
+This project uses separate environment configurations:
+
+- `.env.dev` → for development
+- `.env.production` → for production
+
+Both files define:
+PORT
+CLIENT_ORIGIN
+USERS_URL
+ROLES_URL
+
+---
+
+
 ## 👩‍💻 Author
 
 Shreya Pandey  
 B.E. Electronics & Communication Engineering  
 BMS College of Engineering
+
+
