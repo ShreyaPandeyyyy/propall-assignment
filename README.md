@@ -1,3 +1,13 @@
+## How to Test
+
+1. Open two tabs:
+   - http://localhost:3000/admin
+   - http://localhost:3000/viewer
+2. Edit any user in admin.
+3. Viewer updates in real-time.
+
+---
+
 # 🚀 Propall Full-Stack Assignment
 
 This project demonstrates a real-world full-stack architecture where the application **does not store user data locally**.
