@@ -1,10 +1,21 @@
 ## How to Test
 
-1. Open two tabs:
-   - http://localhost:3000/admin
-   - http://localhost:3000/viewer
-2. Edit any user in admin.
-3. Viewer updates in real-time.
+1. Start both servers
+
+### Open the login page
+- http://localhost:3000
+
+Enter an email present in `roles.json`:
+
+- Admin email → redirected to `/admin`
+- Viewer email → redirected to `/viewer`
+
+### Open two tabs to test real-time updates
+- Tab 1: http://localhost:3000/admin
+- Tab 2: http://localhost:3000/viewer
+
+Edit any user in the Admin tab.  
+Viewer tab updates instantly in real time via Socket.io.
 
 ---
 
