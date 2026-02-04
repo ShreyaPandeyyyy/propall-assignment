@@ -21,6 +21,8 @@ Next.js Client Dashboard
 
 ## 🌐 Cloud Data Source
 
+These files are consumed using GitHub RAW URLs inside the server environment variables.
+
 The server consumes JSON files from this repository:
 
 👉 https://github.com/ShreyaPandeyyyy/propall-assignment-data
@@ -78,6 +80,13 @@ CLIENT_ORIGIN
 USERS_URL
 ROLES_URL
 
+
+For Example:
+PORT=5000
+CLIENT_ORIGIN=http://localhost:3000
+USERS_URL=<GitHub RAW users.json URL>
+ROLES_URL=<GitHub RAW roles.json URL>
+
 ---
 
 
@@ -112,6 +121,7 @@ Client runs at: http://localhost:3000
 ## 🧪 How to Test
 
 ### Step 1 — Open the Login Page
+You can find test emails inside roles.json in the data repository.
 
 Go to:
 
