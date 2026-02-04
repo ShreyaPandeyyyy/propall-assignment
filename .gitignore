@@ -1,0 +1,6 @@
+client/node_modules/
+server/node_modules/
+client/.next/
+.env
+npm-debug.log
+.DS_Store
